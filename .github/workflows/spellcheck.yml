@@ -1,31 +1,23 @@
 name: spellcheck-woke
-on:
-  push:
-  workflow_dispatch:
-
+'on':
+  push: null
+  workflow_dispatch: null
 jobs:
-
-  # Check code for non-inclusive language
   woke:
     name: Run woke
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: woke
-        uses: get-woke/woke-action@v0
-        with:
-          # Cause the check to fail on any broke rules
-          fail-on-error: true
-
-  # Enforce en-us spell check
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: woke
+      uses: get-woke/woke-action@v0
+      with:
+        fail-on-error: true
   spellcheck:
     name: Run spellcheck
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Spellcheck
-        uses: rojopolis/spellcheck-github-actions@0.29.0
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Spellcheck
+      uses: rojopolis/spellcheck-github-actions@0.29.0
